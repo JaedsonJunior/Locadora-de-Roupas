@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcionario.h"
 
 
-
-void tela_menu_funcionario(void) {
+int tela_menu_funcionario(void) {
+    int op;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -28,11 +29,34 @@ void tela_menu_funcionario(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcao desejada: ");
+    scanf("%d",&op);
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    switch (op) {
+            case 1:
+                tela_cadastrar_funcionario();
+                break;
+            case 2:
+                tela_pesquisar_funcionario();
+                break;
+            case 3:
+                tela_alterar_funcionario();
+                break;
+            case 4:
+                tela_excluir_funcionario();    
+                break;
+            case 0:
+                printf("saindo...\n");
+                break;
+            default:
+                printf("Opcao invalida\n");
+                break;
+        }
+
+return op;   
     
 }
 
