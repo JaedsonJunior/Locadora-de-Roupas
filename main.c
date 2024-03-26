@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-
-int menu_tela_princinpal();
+#include "cliente.h"
+#include "funcionario.h"
+#include "produto.h"
+#include "ultilidade.h"
+int menu_tela_principal();
 
 int main(){
     int opcao=-1;
     do{
-        opcao=menu_tela_princinpal();
+        opcao=menu_tela_principal();
     }while (opcao!=0);
+
     return 0;
 }
 
-int menu_tela_princinpal(void){
+int menu_tela_principal(void){
     system("clear||cls");
-
     int opcao;
+    int opcaoCl;
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
@@ -29,7 +32,9 @@ int menu_tela_princinpal(void){
     printf("///                                                                         ///\n");
     printf("///                 = = = = =    Gestao de LdR   = = = = =                  ///\n");
     printf("///                                                                         ///\n");
-    printf("///            1. Sobre                                                     ///\n");
+    printf("///            1. Cliente                                                   ///\n");
+    printf("///            2. Funcionario                                               ///\n");
+    printf("///            3. Produto                                                   ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcaoo desejada: ");
@@ -37,15 +42,28 @@ int menu_tela_princinpal(void){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-
+    limparBuffer();
     switch (opcao)
     {
     case 1:
-        printf("Entrou");
+        do
+            {
+            opcaoCl=tela_menu_cliente(); 
+            } while (opcaoCl!=0);
+            break;
+    case 2:
+        tela_menu_funcionario();
         break;
-    
+    case 3:
+        tela_menu_produto();
+        break;
+    case 0:
+        printf("Saindo...");
+        break;    
     default:
+        printf("Opcao invalida\n");
         break;
     }
-    return 0;
+
+return opcao;
 }

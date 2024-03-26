@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cliente.h"
-
+#include "ultilidade.h"
 
 
 int tela_menu_cliente(void) {
-    int op;
+    int opC;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -30,13 +30,14 @@ int tela_menu_cliente(void) {
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcao desejada: ");
-    scanf("%d",&op);
+    scanf("%d",&opC);
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-     switch (op) {
+    limparBuffer();
+    switch (opC) {
             case 1:
                 tela_cadastrar_cliente();
                 break;
@@ -57,7 +58,7 @@ int tela_menu_cliente(void) {
                 break;
         }
 
-return op;        
+return opC;        
 }
 
 
@@ -88,9 +89,8 @@ void tela_cadastrar_cliente(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
    
-   
-    
 }
 
 
