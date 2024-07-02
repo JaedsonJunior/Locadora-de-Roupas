@@ -8,30 +8,32 @@
 
 int ehLetra(char c) {
 if (c>='A' && c<='Z') {
-return 1;
+    return 1;
 }
+
 else if (c>='a' && c<='z') {
-return 1;
+    return 1;
 }
+
 else {
-return 0;
+    return 0;
 }
 }
 
 //adaptado de replit.com/@flaviusgorgonio/LendoExibindoCaracteresc#main.c
-int va_numero(char c) {
-if (c>='0' && c<='9') {
-return 1;
-}
-else {
-return 0;
-}
+int va_numero(char* c) {
+    for (int i = 0; i < strlen(c); i++) {
+        if (c[i]<'0' || c[i]>'9') {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 
 //CPF ///https://gist.github.com/eduardoedson/8f991b6d234a9ebdcbe3
 
-int validarCPF(const char *cpf){
+int validarCPF(const char *cpf){    
     int i, j, digito1 = 0, digito2 = 0;
     if(strlen(cpf) != 11)
         return 0;
