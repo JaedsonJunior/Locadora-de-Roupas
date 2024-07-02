@@ -77,11 +77,10 @@ void tela_cadastrar_produto(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                 = = = = = = Cadastrar produto = = = = =                 ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///  nome:                                                                  ///\n");
-    printf("///  cpf:                                                                   ///\n");
-    printf("///  numero:                                                                ///\n");
-    printf("///  email:                                                                 ///\n");
-    printf("///  data de nascimento:                                                    ///\n");
+    printf("///  Tipo:                                                                  ///\n");
+    printf("///  Cor:                                                                   ///\n");
+    printf("///  Marca:                                                                 ///\n");
+    printf("///  Preco:                                                                 ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -111,7 +110,7 @@ void tela_pesquisar_produto(void) {
     printf("///                  = = = = = Pesquisar produto = = = = =                  ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///    CPF:                                                                 ///\n");
+    printf("///    tipo:                                                                ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     printf("\n");
@@ -139,7 +138,7 @@ void tela_alterar_produto(void) {
     printf("///                = = = = = = Alterar produto = = = = = =                  ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///    CPF:                                                                 ///\n");
+    printf("///    Tipo:                                                                ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     printf("\n");
@@ -167,7 +166,7 @@ void tela_excluir_produto(void) {
     printf("///            = = = = = = = = Excluir produto = = = = = =                  ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///   CPF:                                                                  ///\n");
+    printf("///   Tipo:                                                                 ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
