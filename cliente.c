@@ -63,7 +63,7 @@ return opC;
 
 
 void tela_cadastrar_cliente(void) {
-
+    char nome[51];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -80,7 +80,10 @@ void tela_cadastrar_cliente(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                 = = = = = = Cadastrar cliente = = = = =                 ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///  nome:                                                                  ///\n");
+    printf("///  nome: ");
+    scanf("%s",nome);
+    limparBuffer();
+    printf("nome: %s",nome);
     printf("///  cpf:                                                                   ///\n");
     printf("///  numero:                                                                ///\n");
     printf("///  email:                                                                 ///\n");
