@@ -95,3 +95,67 @@ int validaNome(const char nome[]) {
     // Se todas as condições forem atendidas, retorna true
     return 1;
 }
+
+
+//numero fone//adaptado chatgpt
+int validaFone(const char fone[]) {
+    int i = 0;
+    while (fone[i] != '\0') {
+        if (fone[i] < '0' || fone[i] > '9') {
+            return 0; // Caractere não é um dígito (0-9)
+        }
+        i++;
+    }
+
+    if (i > 15 || i < 11) {
+        return 0; // O número de telefone é muito longo (mais de 15 dígitos)
+    }
+
+    return 1; // O número de telefone é válido
+}
+
+
+
+//email//chatgpt
+int validaEmail(const char *email) {
+    int i, atpos = -1, dotpos = -1;
+
+    // Verifica se o e-mail é vazio
+    if (strlen(email) == 0)
+        return 0;
+
+    // Verifica se há exatamente um caractere '@'
+    for (i = 0; email[i] != '\0'; i++) {
+        if (email[i] == '@') {
+            if (atpos != -1) // Já existe um '@' anteriormente
+                return 0;
+            atpos = i;
+        }
+    }
+
+    // Verifica se há pelo menos um caractere '.' após o '@'
+    for (i = atpos; email[i] != '\0'; i++) {
+        if (email[i] == '.') {
+            dotpos = i;
+            break;
+        }
+    }
+
+    // Verifica se há pelo menos um caractere após o último '.'
+    if (dotpos == -1 || dotpos == strlen(email) - 1)
+        return 0;
+
+    return 1;
+}
+
+int extrair_data(const char *data, int *dia, int *mes, int *ano) {
+    // Utiliza sscanf para extrair dia, mês e ano da string no formato "dd/mm/aaaa"
+
+    
+    if (sscanf(data, "%d/%d/%d", dia, mes, ano) != 3) {
+        // Se a conversão não foi bem-sucedida (não foram lidos 3 valores), retorna falso
+        return 0;
+    }
+
+    return 1;
+}
