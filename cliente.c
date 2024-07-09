@@ -88,7 +88,6 @@ void tela_cadastrar_cliente(void) {
     printf("///  nome: ");
     scanf("%s",nome);
     limparBuffer();
-    printf("nome: %s",nome);
     printf("///  cpf:                                                                   ///\n");
     scanf("%s",cpf);
     limparBuffer();
