@@ -1,6 +1,15 @@
 #ifndef funcionario_h
 #define funcionario_h
+typedef struct funcionario Funcionario;
 
+struct funcionario
+{
+char cpf[12];
+char nome[61];
+char email[61];
+char data[12];
+char fone[15];
+};
 
 int tela_menu_funcionario(void);
 void tela_cadastrar_funcionario(void);
