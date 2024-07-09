@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "produto.h"
+#include "ultilidade.h"
 
 
 int tela_menu_produto(void) {
