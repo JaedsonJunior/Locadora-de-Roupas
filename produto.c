@@ -60,7 +60,11 @@ return op;
 }
 
 void tela_cadastrar_produto(void) {
-
+    char tipo[20];
+    char cor [20];
+    char marca [20];
+    char tamanho[3];
+    char preco[7];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -78,9 +82,20 @@ void tela_cadastrar_produto(void) {
     printf("///                 = = = = = = Cadastrar produto = = = = =                 ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///  Tipo:                                                                  ///\n");
+    scanf("%s",tipo);
+    limparBuffer();
     printf("///  Cor:                                                                   ///\n");
+    scanf("%s",cor);
+    limparBuffer();
     printf("///  Marca:                                                                 ///\n");
+    scanf("%s",marca);
+    limparBuffer();
+    printf("///  Tamanho:                                                                 ///\n");
+    scanf("%s",tamanho);
+    limparBuffer();
     printf("///  Preco:                                                                 ///\n");
+    scanf("%s",preco);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
