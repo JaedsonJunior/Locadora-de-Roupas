@@ -107,8 +107,8 @@ void tela_cadastrar_produto(void) {
 
 
 void tela_pesquisar_produto(void) {
+    char tipo [20];
     system("clear||cls");
-
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -126,6 +126,8 @@ void tela_pesquisar_produto(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///    tipo:                                                                ///\n");
+    scanf("%s",tipo);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     printf("\n");
@@ -135,7 +137,7 @@ void tela_pesquisar_produto(void) {
 
 
 void tela_alterar_produto(void) {
-
+    char tipo[20];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -154,6 +156,8 @@ void tela_alterar_produto(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///    Tipo:                                                                ///\n");
+    scanf("%s",tipo);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     printf("\n");
@@ -164,6 +168,7 @@ void tela_alterar_produto(void) {
 
 
 void tela_excluir_produto(void) {
+    char tipo[20];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -182,6 +187,8 @@ void tela_excluir_produto(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///   Tipo:                                                                 ///\n");
+    scanf("%s",tipo);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
