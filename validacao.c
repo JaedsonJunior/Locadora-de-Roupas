@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+#include "validacao.h"
 
 //replit.com/@flaviusgorgonio/LendoExibindoCaracteresc#main.c
 
