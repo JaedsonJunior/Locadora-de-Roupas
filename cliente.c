@@ -111,6 +111,7 @@ void tela_cadastrar_cliente(void) {
 
 
 void tela_pesquisar_cliente(void) {
+    char cpf[15];
     system("clear||cls");
 
     printf("\n");
@@ -130,6 +131,8 @@ void tela_pesquisar_cliente(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///    CPF:                                                                 ///\n");
+    scanf("%s",cpf);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     printf("\n");
@@ -139,7 +142,7 @@ void tela_pesquisar_cliente(void) {
 
 
 void tela_alterar_cliente(void) {
-
+    char cpf [15];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -158,6 +161,8 @@ void tela_alterar_cliente(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///    CPF:                                                                 ///\n");
+    scanf("%s",cpf);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     printf("\n");
@@ -168,6 +173,7 @@ void tela_alterar_cliente(void) {
 
 
 void tela_excluir_cliente(void) {
+    char cpf[15];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -186,6 +192,8 @@ void tela_excluir_cliente(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///   CPF:                                                                  ///\n");
+    scanf("%s",cpf);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
