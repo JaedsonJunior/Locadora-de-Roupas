@@ -170,6 +170,7 @@ void tela_alterar_funcionario(void) {
 
 
 void tela_excluir_funcionario(void) {
+    char cpf[15];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -188,6 +189,8 @@ void tela_excluir_funcionario(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///   CPF:                                                                  ///\n");
+    printf("///  cpf:                                                                   ///\n");
+    scanf("%s",cpf);
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
