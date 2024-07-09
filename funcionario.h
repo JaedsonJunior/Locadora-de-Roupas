@@ -4,10 +4,10 @@ typedef struct funcionario Funcionario;
 
 struct funcionario
 {
-char cpf[12];
+char cpf[15];
 char nome[61];
 char email[61];
-char data[12];
+char data[15];
 char fone[15];
 };
 
