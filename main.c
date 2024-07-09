@@ -19,6 +19,8 @@ int menu_tela_principal(void){
     system("clear||cls");
     int opcao;
     int opcaoCl;
+    int opcaoC2;
+    int opcaoC3;
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
@@ -52,11 +54,17 @@ int menu_tela_principal(void){
             } while (opcaoCl!=0);
             break;
     case 2:
-        tela_menu_funcionario();
-        break;
+        do
+            {
+            opcaoC2=tela_menu_funcionario(); 
+            } while (opcaoC2!=0);
+            break;
     case 3:
-        tela_menu_produto();
-        break;
+        do
+            {
+            opcaoC3=tela_menu_produto(); 
+            } while (opcaoC3!=0);
+            break;
     case 0:
         printf("Saindo...");
         break;    
