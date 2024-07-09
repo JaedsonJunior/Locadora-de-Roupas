@@ -148,6 +148,36 @@ int validaEmail(const char *email) {
     return 1;
 }
 
+//data de nascimento// https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas && adaptada pelo chat GPT
+int valida_data(const char *data) {
+    int dia, mes, ano;
+
+    // Extrai dia, mês e ano da string
+    if (!extrair_data(data, &dia, &mes, &ano)) {
+        // Se a extração falhar, a data é considerada inválida
+        return 0;
+    }
+
+
+   if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2024)) {
+        if (mes == 2) {
+            // Fevereiro
+            if (dia > 29) {
+                return 0; // Mais de 29 dias em fevereiro
+            } else if (dia == 29 && (ano % 4 != 0 || (ano % 100 == 0 && ano % 400 != 0))) {
+                return 0; // Ano não bissexto, mas tentando inserir 29 de fevereiro
+            }
+        } else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) {
+            return 0; // Meses com 30 dias e dia maior que 30
+        }
+        // Todas as condições atendidas, a data é válida
+        return 1;
+    }
+    // Condições iniciais não atendidas, a data é inválida
+    return 0;
+}
+
+
 int extrair_data(const char *data, int *dia, int *mes, int *ano) {
     // Utiliza sscanf para extrair dia, mês e ano da string no formato "dd/mm/aaaa"
 
