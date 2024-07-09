@@ -61,7 +61,11 @@ return op;
 }
 
 void tela_cadastrar_funcionario(void) {
-
+    char nome[61];
+    char cpf[15];
+    char numero[15];
+    char email[61];
+    char data[15];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -78,11 +82,22 @@ void tela_cadastrar_funcionario(void) {
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///            = = = = = = = = Cadastrar Funiconario = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///  nome:                                                                  ///\n");
+    printf("///  nome: ");
+    scanf("%s",nome);
+    limparBuffer();
+    printf("nome: %s",nome);
     printf("///  cpf:                                                                   ///\n");
+    scanf("%s",cpf);
+    limparBuffer();
     printf("///  numero:                                                                ///\n");
+    scanf("%s",numero);
+    limparBuffer();
     printf("///  email:                                                                 ///\n");
+    scanf("%s",email);
+    limparBuffer();
     printf("///  data de nascimento:                                                    ///\n");
+    scanf("%s",data);
+    limparBuffer();
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
