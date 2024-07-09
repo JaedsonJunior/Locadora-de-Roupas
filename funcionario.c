@@ -86,7 +86,6 @@ void tela_cadastrar_funcionario(void) {
     printf("///  nome: ");
     scanf("%s",nome);
     limparBuffer();
-    printf("nome: %s",nome);
     printf("///  cpf:                                                                   ///\n");
     scanf("%s",cpf);
     limparBuffer();
