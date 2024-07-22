@@ -273,14 +273,15 @@ void tela_alterar_cliente(void) {
 
 
 void tela_excluir_cliente(void) {
-    char cpf[15];
+    char cpf[12];
     system("clear||cls");
+
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///                  = = = =   ?????????????????     = = = =                ///\n");
+    printf("///                  = = = =   Fragancia Popular     = = = =                ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
     printf("///                                                                         ///\n");
@@ -288,18 +289,23 @@ void tela_excluir_cliente(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                = = = = = = Excluir cliente = = = = = =                  ///\n");
+    printf("///            = = = = = = = = Excluir Cliente = = = = = = = = =            ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///   CPF:                                                                  ///\n");
-    scanf("%s",cpf);
-    limparBuffer();
+     do {
+		printf("///            Informe o CPF (apenas numeros): ");
+		scanf("%12[^\n]",cpf);
+		limparBuffer();
+	} while (!valida_cpf_cliente_pesquisa(cpf));
+    atualizar_situacao_cliente(cpf);
+    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    
+    limparBuffer();
 }
+
 
 
 
