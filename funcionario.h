@@ -27,6 +27,7 @@ void atualizar_funcionario_nome(const char *cpf, const char *novo_dado);
 void atualizar_funcionario_email(const char *cpf, const char *novo_dado);
 void atualizar_funcionario_data(const char *cpf, const char *novo_dado);
 void atualizar_funcionario_telefone(const char *cpf, const char *novo_dado);
+void atualizar_situacao_funcionario(const char *cpf);
 
 
 

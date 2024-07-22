@@ -274,14 +274,14 @@ void tela_alterar_funcionario(void) {
 
 
 void tela_excluir_funcionario(void) {
-    char cpf[15];
+    char cpf[12];
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///                  = = = =   ?????????????????     = = = =                ///\n");
+    printf("///                   = = = =   Fragancia Popular     = = = =               ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
     printf("///                                                                         ///\n");
@@ -292,14 +292,19 @@ void tela_excluir_funcionario(void) {
     printf("///            = = = = = = = = Excluir funcionario = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///   CPF:                                                                  ///\n");
-    printf("///  cpf:                                                                   ///\n");
-    scanf("%s",cpf);
+    limparBuffer();
+     do {
+		printf("///            Informe o CPF (apenas numeros): ");
+		scanf("%12[^\n]",cpf);
+		limparBuffer();
+	} while (!valida_cpf_funcionario_pesquisa(cpf));
+    atualizar_situacao_funcionario(cpf);
+    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    
+    limparBuffer();
 }
 
 
@@ -559,5 +564,34 @@ void atualizar_funcionario_telefone(const char *cpf, const char *novo_dado) {
         fclose(arquivo);
     } else {
         printf("Erro ao abrir o arquivo para leitura e gravação.\n");
+    }
+}
+
+
+void atualizar_situacao_funcionario(const char *cpf) {
+    FILE *arquivo = fopen("funcionario.bin", "rb+");
+    char nova_situacao = 'I';
+
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            // Verifica se o CPF do cliente atual é o desejado
+            if (strcmp(funcionario.cpf, cpf) == 0) {
+                // Atualiza a situação do cliente
+                funcionario.situacao = nova_situacao;
+
+                // Volta para a posição do arquivo para escrever a alteração
+                fseek(arquivo, -sizeof(Funcionario), SEEK_CUR);
+                fwrite(&funcionario, sizeof(Funcionario), 1, arquivo);
+
+                printf("Funcionario com CPF %s excluído com sucesso.\n", cpf);
+                break; // Cliente encontrado, não precisa continuar procurando
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
     }
 }
