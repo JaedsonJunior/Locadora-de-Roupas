@@ -23,6 +23,12 @@ int compara_cpf_cliente_cadastro(const char *cpf);
 int valida_cpf_cliente_cadastro(const char *cpf);
 int compara_cpf_cliente_pesquisa(const char *cpf);
 int valida_cpf_cliente_pesquisa(const char *cpf);
+void atualizar_cliente_nome(const char *cpf, const char *novo_dado);
+void atualizar_cliente_email(const char *cpf, const char *novo_dado);
+void atualizar_cliente_data(const char *cpf, const char *novo_dado);
+void atualizar_cliente_telefone(const char *cpf, const char *novo_dado);
+void excluir_cliente(const char *cpf);
+void atualizar_situacao_cliente(const char *cpf);
 
 
 

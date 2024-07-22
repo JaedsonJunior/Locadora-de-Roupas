@@ -176,14 +176,19 @@ void tela_pesquisar_cliente() {
 
 
 void tela_alterar_cliente(void) {
-    char cpf [15];
+    char cpf[12];
+    char nome[61];
+    char email[61];
+    char data[12];
+    char fone[15];
+    int alt;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///                 = = = =   ?????????????????     = = = =                 ///\n");
+    printf("///                 = = = =   Fragancia Popular     = = = =                 ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
     printf("///                                                                         ///\n");
@@ -191,18 +196,79 @@ void tela_alterar_cliente(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                = = = = = = Alterar cliente = = = = = =                  ///\n");
+    printf("///            = = = = = = = = Alterar Cliente = = = = = = = = =            ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///    CPF:                                                                 ///\n");
-    scanf("%s",cpf);
-    limparBuffer();
+    do {
+		printf("///            Informe o CPF (apenas numeros): ");
+		scanf("%[^\n]",cpf);
+		limparBuffer();
+	} while (!valida_cpf_cliente_pesquisa(cpf));
+    system("clear||cls");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                     OPCOES DE ALTERACAO                                 ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");   
+    printf("///                     1- Alterar o nome                                   ///\n");
+    printf("///                     2- Alterar o email                                  ///\n");
+    printf("///                     3- Alterar a data de nascimeto                      ///\n");
+    printf("///                     4- Alterar o numero telefonico                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    scanf("%d",&alt);
+    switch (alt)
+    {
+    case 1:
+    
+    do {
+		printf(".> Digite o novo Nome: ");
+        limparBuffer();
+		scanf("%61[^\n]",nome);
+        
+	} while (!validaNome(nome));
+        atualizar_cliente_nome(cpf,nome);
+        limparBuffer();
+        break;
+
+    case 2:
+
+     do {   
+		printf(".> Digite o novo email: ");
+        limparBuffer();
+		scanf("%61[^\n]",email);
+	} while (!validaEmail(email));
+        atualizar_cliente_email(cpf,email);
+        limparBuffer();
+        break;
+
+    case 3:
+
+    do {
+		printf(".> nova Data de Nascimento (dd/mm/aaaa): ");
+        limparBuffer();
+		scanf(("%11[0-9/]"),data);
+	} while (!valida_data(data));
+        atualizar_cliente_data(cpf,data);
+        limparBuffer();
+        break;
+
+    case 4:
+
+         do {
+		printf(".> Numero novo  (apenas números): ");
+        limparBuffer();
+		scanf("%[^\n]",fone);
+	    } while (!validaFone(fone));
+        atualizar_cliente_telefone(cpf,fone);
+        limparBuffer();
+        break;
+
+    default:
+        break;
+    }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
 }
-
 
 
 
@@ -373,3 +439,203 @@ int compara_cpf_cliente_pesquisa(const char *cpf) {
         return 0; // Retorna 0 se houver erro ao abrir o arquivo
     }
 }
+
+
+
+// Função para atualizar um cliente no arquivo binário
+void atualizar_cliente_nome(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("clientes.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Cliente cliente;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+            if (strcmp(cliente.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(cliente.nome, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Cliente), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&cliente, sizeof(Cliente), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravação.\n");
+    }
+}
+
+
+// Função para atualizar um cliente no arquivo binário
+void atualizar_cliente_email(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("clientes.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Cliente cliente;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+            if (strcmp(cliente.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(cliente.email, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Cliente), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&cliente, sizeof(Cliente), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravação.\n");
+    }
+}
+
+
+void atualizar_cliente_data(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("clientes.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Cliente cliente;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+            if (strcmp(cliente.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(cliente.data, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Cliente), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&cliente, sizeof(Cliente), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravação.\n");
+    }
+}
+
+
+void atualizar_cliente_telefone(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("clientes.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Cliente cliente;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+            if (strcmp(cliente.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(cliente.fone, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Cliente), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&cliente, sizeof(Cliente), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravacao.\n");
+    }
+}
+
+
+// Função para excluir um cliente com base no CPF do arquivo binário
+void excluir_cliente(const char *cpf) {
+    FILE *arquivo;
+    FILE *temp;
+    Cliente cliente;
+
+    // Abra o arquivo binário para leitura
+    arquivo = fopen("clientes.bin", "rb");
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    // Abra um arquivo temporário para escrita
+    temp = fopen("temp.bin", "wb");
+    if (temp == NULL) {
+        perror("Erro ao criar o arquivo temporario");
+        fclose(arquivo);
+        exit(EXIT_FAILURE);
+    }
+
+    // Leia os registros do arquivo e grave no arquivo temporário, exceto o que será excluído
+    while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+        if (strcmp(cliente.cpf, cpf) != 0) {
+            fwrite(&cliente, sizeof(Cliente), 1, temp);
+        }
+    }
+
+    // Feche os arquivos
+    fclose(arquivo);
+    fclose(temp);
+
+    // Remova o arquivo original e renomeie o temporário
+    if (remove("clientes.bin") != 0) {
+        perror("Erro ao remover o arquivo original");
+        exit(EXIT_FAILURE);
+    }
+
+    if (rename("temp.bin", "clientes.bin") != 0) {
+        perror("Erro ao renomear o arquivo temporario");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Cliente com CPF %s excluido com sucesso.\n", cpf);
+}
+
+
+void atualizar_situacao_cliente(const char *cpf) {
+    FILE *arquivo = fopen("clientes.bin", "rb+");
+    char nova_situacao = 'I';
+
+    if (arquivo != NULL) {
+        Cliente cliente;
+
+        while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+            // Verifica se o CPF do cliente atual é o desejado
+            if (strcmp(cliente.cpf, cpf) == 0) {
+                // Atualiza a situação do cliente
+                cliente.situacao = nova_situacao;
+
+                // Volta para a posição do arquivo para escrever a alteração
+                fseek(arquivo, -sizeof(Cliente), SEEK_CUR);
+                fwrite(&cliente, sizeof(Cliente), 1, arquivo);
+
+                printf("Cliente com CPF %s excluído com sucesso.\n", cpf);
+                break; // Cliente encontrado, não precisa continuar procurando
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+    }
+}
+
