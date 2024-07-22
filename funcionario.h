@@ -21,6 +21,14 @@ int valida_cpf_funcionario_cadastro(const char *cpf);
 int valida_cpf_funcionario_pesquisa(const char *cpf);
 int compara_cpf_funcionario_cadastro(const char *cpf);
 int compara_cpf_funcionario_pesquisa(const char *cpf);
+void pesquisar_funcionario(const char *cpf);
+void pesquisar_funcionario(const char *cpf);
+void atualizar_funcionario_nome(const char *cpf, const char *novo_dado);
+void atualizar_funcionario_email(const char *cpf, const char *novo_dado);
+void atualizar_funcionario_data(const char *cpf, const char *novo_dado);
+void atualizar_funcionario_telefone(const char *cpf, const char *novo_dado);
+
+
 
 
 

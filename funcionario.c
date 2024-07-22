@@ -138,14 +138,15 @@ Funcionario* tela_cadastrar_funcionario(void) {
 
 
 void tela_pesquisar_funcionario(void) {
-    char cpf [15];
+    char cpf[12];
     system("clear||cls");
+
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///                    = = = =  ?????????????????    = = = =                ///\n");
+    printf("///                    = = = =  Fragancia Popular    = = = =                ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
     printf("///                                                                         ///\n");
@@ -156,26 +157,38 @@ void tela_pesquisar_funcionario(void) {
     printf("///            = = = = = = = = Pesquisar funcionario = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///    CPF:                                                                 ///\n");
-    printf("///  cpf:                                                                   ///\n");
-    scanf("%s",cpf);
-    printf("///                                                                         ///\n");
+    limparBuffer();
+   do {
+		printf("///            Informe o CPF (apenas numeros): ");
+		scanf("%[^\n]",cpf);
+		limparBuffer();
+	} while (!valida_cpf_funcionario_pesquisa(cpf));
+    system("clear||cls");
+
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
+    pesquisar_funcionario(cpf);
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
 }
 
-
-
 void tela_alterar_funcionario(void) {
-    char cpf [15];
+    char cpf[12];
+    char nome[61];
+    char email[61];
+    char data[12];
+    char fone[15];
+    int alt = -1;
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///                 = = = =   ?????????????????     = = = =                 ///\n");
+    printf("///                 = = = =   Fragancia Popular     = = = =                 ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
     printf("///                                                                         ///\n");
@@ -183,16 +196,78 @@ void tela_alterar_funcionario(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = = = Alterar funcionario = = = = = =              ///\n");
+    printf("///            = = = = = = = = Alterar Fucionario = = = = = =               ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///    CPF:                                                                 ///\n");
-    printf("///  cpf:                                                                   ///\n");
-    scanf("%s",cpf);
+    limparBuffer();
+    do {
+		printf("///            Informe o CPF (apenas numeros): ");
+		scanf("%[^\n]",cpf);
+		limparBuffer();
+	} while (!valida_cpf_funcionario_pesquisa(cpf));
+    system("clear||cls");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                     OPCOES DE ALTERACAO                                 ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");   
+    printf("///                     1- Alterar o nome                                   ///\n");
+    printf("///                     2- Alterar o email                                  ///\n");
+    printf("///                     3- Alterar a data de nascimeto                      ///\n");
+    printf("///                     4- Alterar o numero telefonico                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    scanf("%d",&alt);
+    switch (alt)
+    {
+    case 1:
+    
+    do {
+		printf(".> Digite o novo Nome: ");
+        limparBuffer();
+		scanf("%61[^\n]",nome);
+	} while (!validaNome(nome));
+        atualizar_funcionario_nome(cpf,nome);
+        limparBuffer();
+        break;
+
+    case 2:
+
+     do {   
+		printf(".> Digite o novo email: ");
+        limparBuffer();
+		scanf("%61[^\n]",email);
+	} while (!validaEmail(email));
+        atualizar_funcionario_email(cpf,email);
+        limparBuffer();
+        break;
+
+    case 3:
+
+    do {
+		printf(".> nova Data de Nascimento (dd/mm/aaaa): ");
+        limparBuffer();
+		scanf(("%11[0-9/]"),data);
+	} while (!valida_data(data));
+        atualizar_funcionario_data(cpf,data);
+        limparBuffer();
+        break;
+
+    case 4:
+
+         do {
+		printf(".> Numero novo  (apenas números): ");
+        limparBuffer();
+		scanf("%15[^\n]",fone);
+	    } while (!validaFone(fone));
+        atualizar_funcionario_telefone(cpf,fone);
+        limparBuffer();
+        break;
+
+    default:
+        break;
+    }
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
 }
 
 
@@ -324,5 +399,165 @@ int compara_cpf_funcionario_pesquisa(const char *cpf) {
     } else {
         printf("Erro ao abrir o arquivo para leitura.\n");
         return 0; // Retorna 0 se houver erro ao abrir o arquivo
+    }
+}
+
+
+
+
+void pesquisar_funcionario(const char *cpf) {
+    FILE *arquivo = fopen("funcionario.bin", "rb");
+
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+
+        int encontrado = 0; // Flag para indicar se o cliente foi encontrado
+
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            // Compara o CPF do cliente atual com o CPF desejado
+            if (strcmp(funcionario.cpf, cpf) == 0) {
+                printf("Cliente encontrado:\n");
+                printf("CPF: %s\n", funcionario.cpf);
+                printf("NOME: %s\n", funcionario.nome);
+                printf("EMAIL: %s\n", funcionario.email);
+                printf("DATA: %s\n", funcionario.data);
+                printf("TELEFONE: %s\n",funcionario.fone);
+                printf("SITUACAO: %c\n",funcionario.situacao);
+                
+                encontrado = 1;
+                break; // Se encontrou, sai do loop
+            }
+        
+
+            else if(!encontrado) {
+                printf("Funcionario com CPF %s nao encontrado.\n", cpf);
+        }}
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+    }
+}
+
+// Função para atualizar um cliente no arquivo binário
+void atualizar_funcionario_nome(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("funcionario.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            if (strcmp(funcionario.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(funcionario.nome, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Funcionario), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&funcionario, sizeof(Funcionario), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravacao.\n");
+    }
+}
+
+
+// Função para atualizar um cliente no arquivo binário
+void atualizar_funcionario_email(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("funcionario.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            if (strcmp(funcionario.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(funcionario.email, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Funcionario), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&funcionario, sizeof(Funcionario), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravação.\n");
+    }
+}
+
+
+
+void atualizar_funcionario_data(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("funcionario.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            if (strcmp(funcionario.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(funcionario.data, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Funcionario), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&funcionario, sizeof(Funcionario), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravacao.\n");
+    }
+}
+
+
+
+void atualizar_funcionario_telefone(const char *cpf, const char *novo_dado) {
+    FILE *arquivo = fopen("funcionario.bin", "r+b");
+
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+
+        // Encontrar a posição do registro que possui o CPF fornecido
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            if (strcmp(funcionario.cpf, cpf) == 0) {
+                // Atualizar os campos necessários do registro
+                strcpy(funcionario.fone, novo_dado);
+
+                // Voltar à posição do arquivo onde o registro foi lido
+                fseek(arquivo, -sizeof(Funcionario), SEEK_CUR);
+
+                // Escrever o registro modificado de volta no arquivo
+                fwrite(&funcionario, sizeof(Funcionario), 1, arquivo);
+
+                printf("%s atualizado com sucesso!\n",novo_dado);
+                break;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo para leitura e gravação.\n");
     }
 }
