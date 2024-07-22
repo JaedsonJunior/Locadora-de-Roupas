@@ -6,12 +6,7 @@
 
 
 void salvar_cliente(Cliente *aln);
-
-
-
-
-
-
+void salvar_funcionario(Funcionario *aln);
 
 
 
