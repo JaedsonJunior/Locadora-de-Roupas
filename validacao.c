@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "validacao.h"
+#include "cliente.h"
 
 //replit.com/@flaviusgorgonio/LendoExibindoCaracteresc#main.c
 
@@ -189,3 +190,4 @@ int extrair_data(const char *data, int *dia, int *mes, int *ano) {
 
     return 1;
 }
+
