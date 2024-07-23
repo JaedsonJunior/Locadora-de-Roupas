@@ -3,6 +3,7 @@
 #include "cliente.h"
 #include "validacao.h"
 #include "funcionario.h"
+#include "produto.h"
 
 void salvar_cliente(Cliente *aln) {
     FILE *arquivo = fopen("clientes.bin", "ab");
@@ -29,4 +30,16 @@ void salvar_funcionario(Funcionario *aln) {
         printf("Erro ao abrir o arquivo para escrita.\n");
     }
 
+}
+
+void salvar_produto(Produto *aln) {
+    FILE *arquivo = fopen("produto.bin", "ab");
+
+    if (arquivo != NULL) {
+        fwrite(aln, sizeof(Produto), 1, arquivo);
+        fclose(arquivo);
+        printf("Gravado com Sucesso!!\n");
+    } else {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+    }
 }
