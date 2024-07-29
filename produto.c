@@ -490,5 +490,28 @@ void atualizar_produto_genero(const char *id, const char *novo_dado) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Cliente com CPF %s excluido com sucesso.\n", id);
+    printf("Produto de id %s excluido com sucesso.\n", id);
+}
+
+int valida_id(const char *id) {
+    FILE *arquivo = fopen("produto.bin", "rb");
+    
+    if (arquivo != NULL) {
+        Produto produto;
+
+        while (fread(&produto, sizeof(Produto), 1, arquivo) == 1) {
+            if (strcmp(produto.id, id) == 0) {
+                fclose(arquivo);  // Feche o arquivo antes de retornar
+                return 1;  // ID encontrado, retorne 1
+            }
+            // Não retorne 0 aqui, pois isso encerraria a função prematuramente
+        }
+
+        fclose(arquivo);
+        // Se chegou aqui, o ID não foi encontrado em nenhum produto
+        return 0;
+    } else {
+        printf("Erro ao abrir o arquivo...\n");
+        return 0;
+    }
 }
