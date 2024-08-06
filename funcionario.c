@@ -137,6 +137,7 @@ Funcionario* tela_cadastrar_funcionario(void) {
     salvar_funcionario(aln);
     limparBuffer();
     return aln;
+    free(aln);
     
 }
 

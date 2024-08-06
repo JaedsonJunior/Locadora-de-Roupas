@@ -136,6 +136,7 @@ Cliente* tela_cadastrar_cliente(void) {
     salvar_cliente(aln);
     limparBuffer();
     return aln;
+    free(aln);
     
 }
     
