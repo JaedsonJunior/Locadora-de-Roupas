@@ -142,7 +142,7 @@ void tela_pesquisar_funcionario(void) {
     system("clear||cls");
 
     printf("\n");
-   printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
@@ -163,8 +163,8 @@ void tela_pesquisar_funcionario(void) {
 		scanf("%[^\n]",cpf);
 		limparBuffer();
 	} while (!valida_cpf_funcionario_pesquisa(cpf));
+   
     system("clear||cls");
-
     printf("///////////////////////////////////////////////////////////////////////////////\n");   
     pesquisar_funcionario(cpf);
     printf("///                                                                         ///\n");
@@ -328,7 +328,7 @@ int valida_cpf_funcionario_cadastro(const char *cpf) {
         
     }else 
     {
-       printf("CPF invalido.");
+       printf("\nCPF invalido.\n");
        return 0;
     };
     
@@ -353,7 +353,7 @@ int valida_cpf_funcionario_pesquisa(const char *cpf) {
         
     }else 
     {
-       printf("CPF invalido.");
+       printf("\nCPF invalido.\n");
        return 0;
     };
     
@@ -410,15 +410,16 @@ int compara_cpf_funcionario_pesquisa(const char *cpf) {
 
 
 
+
 void pesquisar_funcionario(const char *cpf) {
     FILE *arquivo = fopen("funcionario.bin", "rb");
-
     if (arquivo != NULL) {
         Funcionario funcionario;
 
-        int encontrado = 0; // Flag para indicar se o cliente foi encontrado
+         // Flag para indicar se o cliente foi encontrado
 
         while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+           
             // Compara o CPF do cliente atual com o CPF desejado
             if (strcmp(funcionario.cpf, cpf) == 0) {
                 printf("Cliente encontrado:\n");
@@ -429,14 +430,9 @@ void pesquisar_funcionario(const char *cpf) {
                 printf("TELEFONE: %s\n",funcionario.fone);
                 printf("SITUACAO: %c\n",funcionario.situacao);
                 
-                encontrado = 1;
                 break; // Se encontrou, sai do loop
             }
-        
-
-            else if(!encontrado) {
-                printf("Funcionario com CPF %s nao encontrado.\n", cpf);
-        }}
+        }
 
         fclose(arquivo);
     } else {
