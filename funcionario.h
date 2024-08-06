@@ -28,6 +28,8 @@ void atualizar_funcionario_email(const char *cpf, const char *novo_dado);
 void atualizar_funcionario_data(const char *cpf, const char *novo_dado);
 void atualizar_funcionario_telefone(const char *cpf, const char *novo_dado);
 void atualizar_situacao_funcionario(const char *cpf);
+void tela_exibir_funcionario(void);
+void exibir_funcionario_menu(void);
 
 
 

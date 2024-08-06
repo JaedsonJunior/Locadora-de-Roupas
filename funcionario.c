@@ -30,6 +30,7 @@ int tela_menu_funcionario(void) {
     printf("///            2. Pesquisar os dados de um Funcionario                      ///\n");
     printf("///            3. Atualizar o cadastro de um Funcionario                    ///\n");
     printf("///            4. Excluir um Funcionario do sistema                         ///\n");
+    printf("///            5. Listar Funcionarios                                       ///\n");
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcao desejada: ");
@@ -51,6 +52,9 @@ int tela_menu_funcionario(void) {
                 break;
             case 4:
                 tela_excluir_funcionario();    
+                break;
+             case 5:
+                tela_exibir_funcionario();    
                 break;
             case 0:
                 printf("saindo...\n");
@@ -307,6 +311,33 @@ void tela_excluir_funcionario(void) {
     limparBuffer();
 }
 
+void tela_exibir_funcionario(void) {
+    system("clear||cls");
+
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///                  = = = =   Supply clother    = = = =                    ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///            = = = = = = = = Lista de Funcionarios = = = = =              ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    exibir_funcionario_menu();
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
+}
 
 
 
@@ -589,5 +620,37 @@ void atualizar_situacao_funcionario(const char *cpf) {
         fclose(arquivo);
     } else {
         printf("Erro ao abrir o arquivo para leitura e escrita.\n");
+    }
+}
+
+
+void exibir_funcionario_menu(void) {
+    FILE *arquivo = fopen("funcionario.bin", "rb");
+    int i;
+    if (arquivo != NULL) {
+        Funcionario funcionario;
+        i=1;
+
+        while (fread(&funcionario, sizeof(Funcionario), 1, arquivo) == 1) {
+            if (funcionario.situacao != 'I'){
+                // Mostrar informações da venda
+
+                printf("Funcionario encontrado:%d\n",i);
+                printf("CPF: %s\n", funcionario.cpf);
+                printf("NOME: %s\n", funcionario.nome);
+                printf("EMAIL: %s\n", funcionario.email);
+                printf("DATA: %s\n", funcionario.data);
+                printf("TELEFONE: %s\n", funcionario.fone);
+                printf("SITUACAO: %c\n", funcionario.situacao);
+                printf("Proximo Funcionario->\n");
+                printf("#####################################\n");
+                limparBuffer();
+                i+=1;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo de vendas para leitura.\n");
     }
 }
