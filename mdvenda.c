@@ -16,7 +16,7 @@ int tela_menu_venda(void) {
     system("clear||cls");
 
     printf("\n");
-   printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
@@ -43,7 +43,7 @@ int tela_menu_venda(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    
     switch (opcao_venda)
     {
     case 1:
@@ -183,6 +183,7 @@ void venda_funcionario(void) {
 
 
 void lista_geral() {
+    
     FILE *arquivo = fopen("vendas.bin", "rb");
 
     if (arquivo != NULL) {
@@ -194,7 +195,7 @@ void lista_geral() {
                 printf("CPF Cliente: %s\n", venda_atual.cpf_cliente);
                 printf("CPF Funcionário: %s\n", venda_atual.cpf_funcionario);
                 printf("Nome do Produto: %s\n", venda_atual.id_produto);
-                 printf("Data da Venda: %02d/%02d/%04d\n",venda_atual.data / 1000000, (venda_atual.data / 10000) % 100, venda_atual.data % 10000);
+                printf("Data da Venda: %02d/%02d/%04d\n",venda_atual.data / 1000000, (venda_atual.data / 10000) % 100, venda_atual.data % 10000);
                 printf("-----------------\n");
                 limparBuffer();
             
@@ -208,7 +209,6 @@ void lista_geral() {
 
 
 void cadastrar_e_salvar_venda(nova_venda *aln) {
-    
     // Preencha os campos da nova venda
     do {
 		printf("///            Informe o CPF Cliente(apenas numeros): ");
@@ -298,7 +298,7 @@ void pesquisar_funcionario_venda(const char *cpf) {
             }
         
 
-            else if(!encontrado) {
+            else if(encontrado==0) {
                 printf("Cliente com CPF %s nao encontrado.\n", cpf);
         }}
 
@@ -320,8 +320,8 @@ void mostrar_vendas_por_cliente(const char *cpf_cliente) {
                 // Mostrar informações da venda
                 printf("CPF Cliente: %s\n", venda_atual.cpf_cliente);
                 printf("CPF Funcionário: %s\n", venda_atual.cpf_funcionario);
-                printf("Nome do Produto: %s\n", venda_atual.id_produto);
-                printf("Data: %d\n", venda_atual.data);
+                printf("ID do produto: %s\n", venda_atual.id_produto);
+                printf("Data da Venda: %02d/%02d/%04d\n",venda_atual.data / 1000000, (venda_atual.data / 10000) % 100, venda_atual.data % 10000);
                 printf("-----------------\n");
             }
         }
@@ -344,8 +344,8 @@ void mostrar_vendas_por_funcionario(const char *cpf_funcionario) {
                 // Mostrar informações da venda
                 printf("CPF Cliente: %s\n", venda_atual.cpf_cliente);
                 printf("CPF Funcionario: %s\n", venda_atual.cpf_funcionario);
-                printf("Nome do Produto: %s\n", venda_atual.id_produto);
-                printf("Data: %d\n", venda_atual.data);
+                printf("ID do produto: %s\n", venda_atual.id_produto);
+                printf("Data da Venda: %02d/%02d/%04d\n",venda_atual.data / 1000000, (venda_atual.data / 10000) % 100, venda_atual.data % 10000);
                 printf("-----------------\n");
             }
         }
