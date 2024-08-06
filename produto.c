@@ -30,6 +30,7 @@ int tela_menu_produto(void) {
     printf("///            2. Pesquisar os dados de um produto                          ///\n");
     printf("///            3. Atualizar os dados de um produto                          ///\n");
     printf("///            4. Excluir um produto do sistema                             ///\n");
+    printf("///            5. Listar Produtos                                           ///\n");
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcao desejada: ");
@@ -52,6 +53,9 @@ int tela_menu_produto(void) {
             case 4:
                 tela_excluir_produto();    
                 break;
+            case 5:
+                tela_exibir_produto();    
+                break;    
             case 0:
                 printf("saindo...\n");
                 break;
@@ -265,6 +269,33 @@ void tela_excluir_produto(void) {
     limparBuffer();
 }
 
+
+
+void tela_exibir_produto(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///                  = = = =   Supply clother    = = = =                    ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///              = = = = =  Exibir Lista de Produto = = = =                 ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    exibir_produto();
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
+}
 
 
 void pesquisar_produto(const char *id) {
@@ -513,5 +544,38 @@ int valida_id(const char *id) {
     } else {
         printf("Erro ao abrir o arquivo...\n");
         return 0;
+    }
+}
+
+
+
+void exibir_produto(void) {
+    FILE *arquivo = fopen("produto.bin", "rb");
+    int i;
+    i = 1;
+    if (arquivo != NULL) {
+        Produto produto;
+        
+        while (fread(&produto, sizeof(Produto), 1, arquivo) == 1) {
+            
+                // Mostrar informações da venda
+                printf("Produto encontrado:\n");
+                printf("ID:%s\n",produto.id);
+                printf("Roupa:%s\n",produto.genero);
+                printf("Nome: %s\n", produto.nome);
+                printf("Cor: %s\n ", produto.cor);
+                printf("Preco: R$ %s\n", produto.preco);
+                printf("Quantidade: %s Unidades\n", produto.quantidade);
+                printf("###############################################\n");
+                limparBuffer();
+                i+=1;
+                
+                
+            
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo de vendas para leitura.\n");
     }
 }

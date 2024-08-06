@@ -27,8 +27,8 @@ void salvar_produto(Produto *aln);
 void atualizar_produto_cor(const char *id, const char *novo_dado);
 void atualizar_produto_genero(const char *id, const char *novo_dado);
 int valida_id(const char *id);
-
-
+void tela_exibir_produto(void);
+void exibir_produto(void);
 
 
 
