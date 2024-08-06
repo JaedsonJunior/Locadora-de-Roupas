@@ -6,6 +6,7 @@
 #include "ultilidade.h"
 #include "mdvenda.h"
 #include "relatorio.h"
+#include "sobre.h"
 int menu_tela_principal();
 
 int main(){
@@ -42,7 +43,8 @@ int menu_tela_principal(void){
     printf("///            2. Funcionario                                               ///\n");
     printf("///            3. Produto                                                   ///\n");
     printf("///            4. Venda                                                     ///\n");
-    printf("///            5. relatorio                                                 ///\n");
+    printf("///            5. Relatorio                                                 ///\n");
+    printf("///            6. Sobre                                                     ///\n");
     printf("///            0. Sair                                                      ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcaoo desejada: ");
@@ -71,18 +73,21 @@ int menu_tela_principal(void){
             opcaoC3=tela_menu_produto(); 
             } while (opcaoC3!=0);
             break;
-     case 4:
+    case 4:
         do
             {
             opcaoC4=tela_menu_venda(); 
             } while (opcaoC4!=0);
             break;        
-     case 5:
+    case 5:
         do
             {
             opcaoC5=relatorios(); 
             } while (opcaoC5!=0);
             break;
+    case 6:
+             mostrar_sobre();
+            break;        
     case 0:
         printf("Saindo...");
         break;    
