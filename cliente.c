@@ -30,6 +30,7 @@ int tela_menu_cliente(void) {
     printf("///            2. Pesquisar os dados de um cliente                          ///\n");
     printf("///            3. Atualizar os dados de um cliente                          ///\n");
     printf("///            4. Excluir um cliente do sistema                             ///\n");
+    printf("///            5. Listar Clientes                                           ///\n");
     printf("///            0. Voltar ao menu anterior                                   ///\n");
     printf("///                                                                         ///\n");
     printf("///            Escolha a opcao desejada: ");
@@ -53,6 +54,9 @@ int tela_menu_cliente(void) {
             case 4:
                 tela_excluir_cliente();    
                 break;
+            case 5:
+                tela_exibir_cliente();    
+                break;    
             case 0:
                 printf("saindo...\n");
                 break;
@@ -306,6 +310,32 @@ void tela_excluir_cliente(void) {
 }
 
 
+void tela_exibir_cliente(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///                  = = = =   Supply clother    = = = =                    ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///            = = = = = = = =  Lista Clientes  = = = = = = = =             ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    exibir_cliente_menu();
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    limparBuffer();
+}
 
 
 
@@ -638,3 +668,32 @@ void atualizar_situacao_cliente(const char *cpf) {
     }
 }
 
+
+void exibir_cliente_menu(void) {
+    FILE *arquivo = fopen("clientes.bin", "rb");
+    int i;
+    if (arquivo != NULL) {
+        Cliente cliente;
+        i = 1;
+
+        while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
+            if (cliente.situacao != 'I') {
+                // Mostrar informações do cliente
+                printf("Cliente encontrado:%d\n", i);
+                printf("CPF: %s\n", cliente.cpf);
+                printf("NOME: %s\n", cliente.nome);
+                printf("EMAIL: %s\n", cliente.email);
+                printf("DATA: %s\n", cliente.data);
+                printf("TELEFONE: %s\n", cliente.fone);
+                printf("SITUACAO: %c\n", cliente.situacao);
+                printf("Proximo Cliente->\n");
+                limparBuffer();
+                i += 1;
+            }
+        }
+
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo de clientes para leitura.\n");
+    }
+}

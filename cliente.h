@@ -29,6 +29,9 @@ void atualizar_cliente_data(const char *cpf, const char *novo_dado);
 void atualizar_cliente_telefone(const char *cpf, const char *novo_dado);
 void excluir_cliente(const char *cpf);
 void atualizar_situacao_cliente(const char *cpf);
+void tela_exibir_cliente(void);
+void exibir_cliente_menu(void);
+
 
 
 
