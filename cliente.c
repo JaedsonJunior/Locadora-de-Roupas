@@ -312,15 +312,16 @@ void tela_excluir_cliente(void) {
 
 void pesquisar_cliente(const char *cpf) {
     FILE *arquivo = fopen("clientes.bin", "rb");
-
+   
     if (arquivo != NULL) {
         Cliente cliente;
 
-        int encontrado = 0; // Flag para indicar se o cliente foi encontrado
+        
 
         while (fread(&cliente, sizeof(Cliente), 1, arquivo) == 1) {
             // Compara o CPF do cliente atual com o CPF desejado
             if (strcmp(cliente.cpf, cpf) == 0) {
+                
                 printf("Cliente encontrado:\n");
                 printf("CPF: %s\n", cliente.cpf);
                 printf("NOME: %s\n", cliente.nome);
@@ -330,15 +331,9 @@ void pesquisar_cliente(const char *cpf) {
                 printf("SITUACAO: %c\n", cliente.situacao);
                 
                 
-                encontrado = 1;
+               
                 break; // Se encontrou, sai do loop
-            }
-        
-
-            else if(!encontrado) {
-                printf("Cliente com CPF %s nao encontrado.\n", cpf);
-        }}
-
+            }}
         fclose(arquivo);
     } else {
         printf("Erro ao abrir o arquivo para leitura.\n");
@@ -381,15 +376,14 @@ int valida_cpf_cliente_cadastro(const char *cpf) {
             fclose(arquivo);
             return compara_cpf_cliente_cadastro(cpf);
             
+            }else{
+                return 0;
             }
-        else{
-            return 0;
-        }
-
+        
         
     }else 
     {
-       printf("CPF invalido.");
+       printf("\nCPF invalido.\n");
        return 1;
     };
     
@@ -414,7 +408,7 @@ int valida_cpf_cliente_pesquisa(const char *cpf) {
         
     }else 
     {
-       printf("CPF invalido.");
+       printf("\nCPF invalido.\n");
        return 0;
     };
     
@@ -633,7 +627,7 @@ void atualizar_situacao_cliente(const char *cpf) {
                 fseek(arquivo, -sizeof(Cliente), SEEK_CUR);
                 fwrite(&cliente, sizeof(Cliente), 1, arquivo);
 
-                printf("Cliente com CPF %s excluído com sucesso.\n", cpf);
+                printf("\nCliente com CPF %s excluído com sucesso.\n", cpf);
                 break; // Cliente encontrado, não precisa continuar procurando
             }
         }
